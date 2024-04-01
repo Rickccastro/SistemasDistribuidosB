@@ -74,7 +74,7 @@ public class HealthCheckController {
     
     /*Gera numero aleatorioB,faz a solicitacao do clientC e seu numero aleatorio*/
     @GetMapping("/geraNumero/{nameC}")
-    public int geraRandomB(@PathVariable String nameC) throws URISyntaxException{
+    public String geraRandomB(@PathVariable String nameC) throws URISyntaxException{
     	Random random = new Random();
     	int aleatorioB = random.nextInt(10);
     	int aleatorioC;
@@ -95,7 +95,7 @@ public class HealthCheckController {
              HttpResponse<String> response = HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
           
             aleatorioC = Integer.parseInt(response.body());
-            return aleatorioB + aleatorioC;
+            return String.valueOf(aleatorioB + aleatorioC);
 
          } catch (IOException e) {
         	 System.err.println(e);
@@ -105,9 +105,8 @@ public class HealthCheckController {
 
          }
     	
-        return -2;
+        return String.valueOf(-2);
     
     }
-    
    
 }
